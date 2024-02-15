@@ -1,0 +1,170 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helper="clr-namespace:ChatAppTutorial.Helpers"
+             xmlns:viewModel="clr-namespace:ChatAppTutorial.ViewModels"
+             x:Class="ChatAppTutorial.Pages.MatchFriendPage"
+             Title="MatchFriendPage"
+             NavigatedTo="MatchFriendPage_OnNavigatedTo">
+
+    <ContentPage.BindingContext>
+        <viewModel:MatchFriendPageViewModel />
+    </ContentPage.BindingContext>
+
+    <RefreshView>
+        <Grid>
+            <Grid BackgroundColor="#13232f">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Padding="10">
+                    <StackLayout Orientation="Vertical">
+                        <Grid>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding UserInfo.AvatarFile}" WidthRequest="32"
+                                       HeightRequest="32" VerticalOptions="Center" />
+                                <Label Text="{Binding UserInfo.UserName}" VerticalOptions="Center"
+                                       FontSize="20" FontAttributes="Bold" Margin="10,0,0,0"
+                                       TextColor="White" />
+
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                <Button BackgroundColor="#152c39" HeightRequest="32"
+                                        WidthRequest="32" CornerRadius="45"
+                                        Command="{Binding GoToListPageCommand}">
+                                    <Button.ImageSource>
+                                        <FontImageSource FontFamily="IconFontTypes"
+                                                         Glyph="{x:Static helper:IconFontHelper.Arrow_back}"
+                                                         Size="18" />
+                                    </Button.ImageSource>
+                                </Button>
+                            </StackLayout>
+                        </Grid>
+
+                        <Rectangle Fill="White" HeightRequest="4" Margin="0,10,0,0" />
+                    </StackLayout>
+                </Grid>
+                
+                <SwipeView Grid.Row="1" Margin="20" IsVisible="{Binding ContainsUser}">
+                    <SwipeView.RightItems>
+                        <SwipeItems SwipeBehaviorOnInvoked="Close" Mode="Execute">
+                            <SwipeItem Text=""
+                                       BackgroundColor="Green"
+                                       Command="{Binding AddFriendCommand}" />
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+
+                    <SwipeView.LeftItems>
+                        <SwipeItems SwipeBehaviorOnInvoked="Close" Mode="Execute">
+                            <SwipeItem Text=""
+                                       BackgroundColor="Red"
+                                       Command="{Binding DislikeCommand}" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+
+
+                    <VerticalStackLayout
+                        BackgroundColor="#223e53"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Padding="10">
+
+                        <Image Source="{Binding AvatarFile}" Margin="0,20,0,0"
+                               WidthRequest="260"
+                               HeightRequest="260" />
+
+                        <Label Text="{Binding UserName}"
+                               TextColor="White"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" Margin="0,10,0,0" />
+
+                        <Rectangle Fill="White" HeightRequest="4" Margin="0,10,0,0" />
+
+                        <HorizontalStackLayout Margin="0,20">
+                            <Label Text="Hobbies: "
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+
+                            <Label Text="{Binding Hobbies}"
+                                   FontSize="18"
+                                   FontAttributes="Italic"
+                                   TextColor="White"
+                                   MaximumWidthRequest="270" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <Label Text="Age: "
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+
+                            <Label Text="{Binding Age}"
+                                   FontSize="18"
+                                   FontAttributes="Italic"
+                                   TextColor="White"
+                                   MaximumWidthRequest="270" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Margin="0,20,0,20">
+                            <Label Text="Job: "
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+
+                            <Label Text="{Binding Job}"
+                                   FontSize="18"
+                                   FontAttributes="Italic"
+                                   TextColor="White"
+                                   MaximumWidthRequest="315" />
+                        </HorizontalStackLayout>
+                        
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding UserName}"
+                                   FontSize="18"
+                                   FontAttributes="Italic"
+                                   TextColor="White"/>
+                            
+                            <Label Text=" is currently "
+                                   FontSize="18"
+                                   FontAttributes="Italic"
+                                   TextColor="White"
+                                   Margin="3,0,0,0"/>
+                            
+                            <Label Text="Online"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="Green"
+                                   IsVisible="{Binding IsOnline}"
+                                   Margin="3,0,0,0"/>
+                            
+                            <Label Text="Offline"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="Red"
+                                   IsVisible="{Binding IsAway}"
+                                   Margin="4,0,0,0"/>
+                            
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+                </SwipeView>
+                
+                <Label Grid.Row="1" IsVisible="{Binding NotContainsUser}"
+                       Text="There is no user who is not friend with you"
+                       TextColor="White"
+                       FontSize="30"
+                       Margin="20" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+
+            </Grid>
+            <ActivityIndicator HeightRequest="60" WidthRequest="60"
+                               IsRunning="{Binding IsProcessing}" />
+        </Grid>
+    </RefreshView>
+</ContentPage>

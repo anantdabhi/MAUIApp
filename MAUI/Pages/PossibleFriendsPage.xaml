@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helper="clr-namespace:ChatAppTutorial.Helpers"
+             xmlns:viewModel="clr-namespace:ChatAppTutorial.ViewModels"
+             x:Class="ChatAppTutorial.Pages.PossibleFriendsPage"
+             NavigatedTo="PossibleFriendsPage_OnNavigatedTo">
+
+    <ContentPage.BindingContext>
+        <viewModel:PossibleFriendsPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <StackLayout Orientation="Vertical" BackgroundColor=" #13232f">
+
+            <Grid Padding="0,10">
+                <StackLayout Orientation="Vertical">
+                    <Grid Margin="10,0">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="loki.png" WidthRequest="32"
+                                   HeightRequest="32" VerticalOptions="Center" />
+                            <Label Text="Loki" VerticalOptions="Center"
+                                   FontSize="20" FontAttributes="Bold" Margin="10,0,0,0"
+                                   TextColor="White" />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                            <Button BackgroundColor="#152c39" HeightRequest="32"
+                                    WidthRequest="32" CornerRadius="45"
+                                    Command="{Binding GoToListPageCommand}">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="IconFontTypes"
+                                                     Glyph="{x:Static helper:IconFontHelper.Arrow_back}"
+                                                     Size="18" />
+                                </Button.ImageSource>
+                            </Button>
+                        </StackLayout>
+                    </Grid>
+
+                    <Rectangle Fill="White" HeightRequest="4" Margin="0,10,0,0" />
+
+                </StackLayout>
+
+            </Grid>
+
+
+            <ListView Margin="10,10"
+                      RowHeight="64"
+                      ItemsSource="{Binding PossibleFriends}"
+                      SeparatorVisibility="None"
+                      VerticalScrollBarVisibility="Never">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <HorizontalStackLayout>
+                                    <Grid WidthRequest="58"
+                                          HeightRequest="54">
+                                        <Image Source="{Binding AvatarFile}"
+                                               WidthRequest="54"
+                                               HeightRequest="54"
+                                               HorizontalOptions="Start" />
+                                    </Grid>
+
+                                    <StackLayout Margin="10,5,0,0"
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="Center">
+                                        <Label Text="{Binding UserName}"
+                                               FontSize="17"
+                                               HorizontalTextAlignment="Start" HorizontalOptions="Start"
+                                               VerticalOptions="Center"
+                                               TextColor="White" />
+
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+
+                                    <Button BackgroundColor="red" HeightRequest="32"
+                                            WidthRequest="32" CornerRadius="45"
+                                            VerticalOptions="Center"
+                                            Command="{Binding Path=DislikeFriendCommand,
+                                                Source={RelativeSource AncestorType={x:Type viewModel:PossibleFriendsPageViewModel}}}"
+                                            CommandParameter="{Binding Id}">
+                                        <Button.ImageSource>
+                                            <FontImageSource FontFamily="IconFontTypes"
+                                                             Glyph="{x:Static helper:IconFontHelper.Cancel}"
+                                                             Size="18" />
+                                        </Button.ImageSource>
+                                    </Button>
+
+                                    <Button BackgroundColor="Green" HeightRequest="32"
+                                            WidthRequest="32" CornerRadius="45" Margin="10,0,0,0"
+                                            VerticalOptions="Center"
+                                            Command="{Binding Path=AddFriendCommand,
+                                                Source={RelativeSource AncestorType={x:Type viewModel:PossibleFriendsPageViewModel}}}"
+                                            CommandParameter="{Binding Id}">
+                                        <Button.ImageSource>
+                                            <FontImageSource FontFamily="IconFontTypes"
+                                                             Glyph="{x:Static helper:IconFontHelper.Check}"
+                                                             Size="18" />
+                                        </Button.ImageSource>
+                                    </Button>
+                                </StackLayout>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <ActivityIndicator HeightRequest="60" WidthRequest="60"
+                           IsRunning="{Binding IsProcessing}" />
+    </Grid>
+</ContentPage>

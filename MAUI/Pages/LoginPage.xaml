@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:ChatAppTutorial.ViewModels"
+             x:Class="ChatAppTutorial.Pages.LoginPage"
+             Title="LoginPage"
+             Background="#13232f"
+             NavigatedTo="LoginPage_OnNavigatedTo">
+
+    <ContentPage.BindingContext>
+        <viewModel:LoginPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <VerticalStackLayout Margin="30"
+                             VerticalOptions="Center">
+
+            <Label FontSize="45"
+                   HorizontalOptions="Center"
+                   Text="ChatApp"
+                   TextColor="White" />
+
+            <Label FontSize="20"
+                   HorizontalOptions="Center"
+                   Text="With SignalR"
+                   TextColor="White" />
+
+            <Frame Margin="0,45,0,0"
+                   Padding="10,0,10,0"
+                   BorderColor="Transparent">
+                <Entry Placeholder="Username"
+                       ReturnType="Go"
+                       TextColor="Black"
+                       Text="{Binding UserName}" />
+            </Frame>
+
+            <Frame Margin="0,10,0,0"
+                   Padding="10,0,10,0"
+                   BorderColor="Transparent">
+                <Entry IsPassword="True"
+                       Placeholder="Password"
+                       ReturnType="Go"
+                       TextColor="Black"
+                       Text="{Binding Password}" />
+            </Frame>
+
+            <Label Margin="0,10,0,0"
+                   Text="Forgot password"
+                   TextColor="#1e90ff" />
+
+            <Button Margin="0,30,0,0"
+                    Background="#f0932b"
+                    Text="Login"
+                    TextColor="White"
+                    Command="{Binding LoginCommand}" />
+
+            <HorizontalStackLayout Margin="0,50,0,0"
+                                   HorizontalOptions="Center">
+                <Line BackgroundColor="Gray"
+                      HeightRequest="0.5"
+                      WidthRequest="60" />
+
+                <Label Margin="10,0,10,0"
+                       Text="Or continue with"
+                       TextColor="White" />
+
+                <Line BackgroundColor="Gray"
+                      HeightRequest="0.5"
+                      WidthRequest="60" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Margin="0,30,0,0"
+                                   HorizontalOptions="Center">
+                <Frame Padding="15,10,15,10">
+                    <Image HeightRequest="32"
+                           Source="google_logo.png"
+                           WidthRequest="32" />
+                </Frame>
+
+                <Frame Margin="20,0,0,0" Padding="15,10,15,10">
+                    <Image HeightRequest="32"
+                           Source="apple_logo.png"
+                           WidthRequest="32" />
+                </Frame>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Margin="0,40,0,0"
+                                   HorizontalOptions="Center">
+
+                <Label Text="Not a member?" TextColor="White" />
+
+                <Label Margin="5,0,0,0" Text="Register now"
+                       TextColor="#1e90ff" />
+
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <ActivityIndicator HeightRequest="60" WidthRequest="60"
+                           IsRunning="{Binding IsProcessing}"/>
+    </Grid>
+</ContentPage>
