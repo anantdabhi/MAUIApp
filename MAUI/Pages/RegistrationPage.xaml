@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatAppTutorial.Pages.RegistrationPage"
+             Title="RegistrationPage">
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="40,40" >
+        <Label FontSize="20"
+            Text="I am a..."
+            VerticalOptions="Center" 
+            HorizontalOptions="Start" />
+        <HorizontalStackLayout HorizontalOptions="Center" >
+            <RadioButton GroupName="gender" FontSize="20" Content="Male" />
+            <RadioButton GroupName="gender" FontSize="20" Content="Female" />
+        </HorizontalStackLayout>
+
+        <Label FontSize="20"
+Text="Who are you interested in?"
+VerticalOptions="Center" 
+HorizontalOptions="Start" />
+        <HorizontalStackLayout HorizontalOptions="Center" >
+            <RadioButton GroupName="lookingforgender" FontSize="20" Content="Male" />
+            <RadioButton GroupName="lookingforgender" FontSize="20" Content="Female" />
+        </HorizontalStackLayout>
+
+        <Border Padding="10" >
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5"></RoundRectangle>
+            </Border.StrokeShape>
+            <StackLayout>
+                <Label FontSize="20" Margin="0,20" 
+                        Text="Who are you looking for?"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Start" />
+                <StackLayout  Padding="0" >
+                    <Button Text="Attractive Members" BorderColor="Blue" BorderWidth="2" />
+                    <Label Text="A beautiful/handsome and fun individual who brings excitement into the atmosphere." Margin="5" ></Label>
+                </StackLayout>
+
+                <StackLayout >
+                    <Button Text="Successful Members" BorderColor="Blue" BorderWidth="2"  />
+                    <Label Text="Charming, generous, and fun individual seeking to enhance another lifestyle." Margin="5" ></Label>
+                </StackLayout>
+            </StackLayout>
+        </Border>
+        <Label Text="Birth Date.." FontSize="20"  Margin="0,20,0,0" />
+        <DatePicker FontSize="20" HorizontalOptions="Fill" ></DatePicker>
+
+
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

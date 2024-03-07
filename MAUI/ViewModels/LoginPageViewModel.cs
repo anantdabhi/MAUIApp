@@ -55,4 +55,10 @@ public partial class LoginPageViewModel : ObservableObject
 
         IsProcessing = false;
     }
+
+    [RelayCommand]
+    async Task Registration()
+    {
+        await Shell.Current.GoToAsync(nameof(RegistrationPage));
+    }
 }

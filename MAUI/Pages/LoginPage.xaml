@@ -18,12 +18,12 @@
 
             <Label FontSize="45"
                    HorizontalOptions="Center"
-                   Text="ChatApp"
+                   Text="Doughnut"
                    TextColor="White" />
 
             <Label FontSize="20"
                    HorizontalOptions="Center"
-                   Text="With SignalR"
+                   Text="Find your Arrangement"
                    TextColor="White" />
 
             <Frame Margin="0,45,0,0"
@@ -88,9 +88,9 @@
             <HorizontalStackLayout Margin="0,40,0,0"
                                    HorizontalOptions="Center">
 
-                <Label Text="Not a member?" TextColor="White" />
+                <Label Text="Not a member?" TextColor="White" VerticalOptions="Center" />
 
-                <Label Margin="5,0,0,0" Text="Register now"
+                <Button Margin="15,0,0,0" Text="Register now"  Command="{Binding RegistrationCommand}" VerticalOptions="Center"
                        TextColor="#1e90ff" />
 
             </HorizontalStackLayout>
